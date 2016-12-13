@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+	{% load static %}
+	<link rel='stylesheet' type='text/css' href="{% static 'base.css' %}" />
+	{% block link %}<link />{% endblock %}
+    <title>{% block title %}标题{% endblock %}</title>
+</head>
+<body>
+<header>
+	{% if user.is_authenticated %}
+		{% include 'index/logout.html' %}
+	{% else %}
+		<span>
+			{% include 'index/login.html' %}
+			<span>|</span>
+			<a href='{% url "index:registration" %}'><button>注册</button></a>
+		</span>
+	{% endif %}
+	{% block header %}{% endblock %} 
+	<script>
+	function search_check(str)	
+	{
+	if (str.length>10)
+		{
+		alert('too long!');
+		}
+	}
+	</script>
+</header>
+<hr />
+<nav>
+	{% block nav %}
+		<span>导航</span>
+		{% if user.is_authenticated %}
+			<a href='{% url "myblog:editor" %}?user_id={{ user.id }}&article_id={{ -1 }}'><button>添加文章</button></a>
+		{% else %}
+			<a href='{% url "index:login" %}'><button>添加文章</button></a>
+		{% endif %}
+		<form action='{% url "search:search_engine" %}' method='POST' >
+		{% csrf_token %}
+			<input type='text' name=search placeholder='请输入搜索关键字' required='required' onblur='search_check(this.value)' />
+			<input type='submit' />
+		</form>
+	{% endblock %}
+</nav>
+<hr />
+{% block content %}内容{% endblock %}
+<footer>
+	{% block footer %}页脚{% endblock %}
+	<span><b><a>***感谢访问***</a></b></span>
+</footer>
+{% block script %}{% endblock %}
+</body>
+</html>
