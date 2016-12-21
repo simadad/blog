@@ -1,0 +1,29 @@
+.album{
+	margin: 5px;
+	padding: 5px;
+	background-color: rgba(200, 200, 200, 0.3);
+}
+.album_name{
+	padding: 5px;
+	background-color: rgba(220, 220, 220, 0.2);
+}
+.album_photos{
+	margin-top: 2px;
+	padding: 10px;
+	background-color: rgba(230, 230, 230, 0.4);
+	/*display: inline;*/
+}
+.photo{
+	width: 170px;
+}
+#bigs{
+	position: absolute;
+	
+	top: 0;
+	
+	text-align: center;
+	background-color: rgba(20, 20, 20, 0.5);
+}
+#bigs img{
+	margin-top: 100px;
+}

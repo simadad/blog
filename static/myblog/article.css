@@ -1,0 +1,100 @@
+.content{
+	background-color: rgba(200,230,190,0.2);
+	margin: 0;
+	padding: 5px 0;
+	border-radius: 0;
+}
+/* whole article */
+.article{
+	width: 90%;
+	background-color: rgba(190,240,180,0.3);
+	margin: 0 auto;
+	padding: 5px 0;
+	border-radius: 1em 1em;
+}
+
+/* article title */
+.article_title{
+	background-color: rgba(240,240,240,0.6);
+	padding: 5px 0;
+	margin: 0 60px;
+	border-radius: 1em 1em;
+	text-align: center;
+}
+
+.article h2{
+	display: inline;
+	font-size: 2em;
+}
+
+.article i{
+	text-align: right;
+	float: right;
+	position: relative;
+	top: -1.6em;
+	left: -5em;
+}
+
+/* article content */
+.article_content{
+	padding: 5px 10px;
+	margin: 5px 5px 0 5px;
+	border-radius: 1em 1em;
+	background-color: rgba(200,240,200,0.6);
+}
+
+.evaluate{
+	width:5%;
+	height:5em;
+	float:left;
+	background-color: rgba(240,240,240,0.5);
+	border-radius: 1em 1em;
+}
+
+.article_content p{
+	width: 90%;
+	margin-left: 5%;
+}
+
+.editor{
+	float:right;
+}
+
+.tag {
+	clear:both;
+}
+
+.article_content p textarea{
+	width: 98%;
+	min-height: 50em;
+	margin: 1%;
+}
+
+/*  */
+.commenter{
+	margin: 5px 10px;
+	background-color: rgba(230,240,220,0.5);
+	padding:1px 0;
+	border-radius: 1em 1em;
+}
+
+.commenter_show{
+	background-color: rgba(230,240,220,0.6);
+	margin: 5px 10px;
+	border-radius: 1em 1em;
+	padding: 5px 10px;
+}
+
+.commenter_add{
+	margin: 5px 10px;
+	background-color: rgba(230,240,220,0.7);
+	border-radius: 1em 1em;
+	padding: 5px 10px;
+}
+
+.commenter_add textarea{
+	background-color: rgba(230,240,220,0.9);
+}
+
+
+
