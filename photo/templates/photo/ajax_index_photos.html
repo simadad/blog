@@ -1,0 +1,8 @@
+{% load static %}
+<button class='photosL' onclick='pages_add(this,{{album.album.id}},{{album.page}},"false")'><img src='{% static "photo/image/left.jpg" %}'/></button>
+<span class='photos_center' id='album{{ album.id }}'>
+{% for photo in album.photos %}
+	<a onclick='NewBigPh(this, {{ photo.id}})'><span class='photo' id='photo{{ photo.id }}'><img src='{{ photo.Thumbnail_photo.url }}' /></span></a>
+{% endfor %}
+</span>
+<button class='photosR' onclick='pages_add(this,{{album.album.id}},{{album.page}},"true")'><img src='{% static "photo/image/right.jpg" %}'/></button>

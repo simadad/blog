@@ -195,9 +195,9 @@ def blogger_editor(request, blogger_id):
         age = blogger_editor_data['age']
         intro = blogger_editor_data['intro']
         followed = request.POST.getlist('followed')        # 得到name同为followed的input元素的value的数组
-        favicon = ImgForm(request.POST, request.FILES)
-        if favicon.is_valid():
-            favicon = favicon.cleaned_data['favicon']
+        image = ImgForm(request.POST, request.FILES)
+        if image.is_valid():
+            favicon = image.cleaned_data['favicon']
             img = Image.open(favicon)
             img.save('media/img/favicon/%s.jpg' % blogger_id)
         else:

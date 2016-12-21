@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}photo{% endblock %}
+{% block link %}
+	{% load static %}
+	<link rel='stylesheet' type='text/css' href='{% static "photo/index.css" %}' />
+{% endblock %}
+{% block content %}
+<div class='content'>
+<div class='albums'>
+	<div class='album_row'>
+		<div class='album_box'></div>
+		<div class='album_box'></div>
+		<div class='album_box'></div>
+	</div>
+	<div class='album_row'>
+		<div class='album_box'></div>
+		<div class='album_box'></div>
+		<div class='album_box'></div>
+	</div>
+	<div class='album_row'>
+		<div class='album_box'></div>
+		<div class='album_box'></div>
+		<div class='album_box'></div>
+	</div>
+</div>
+</div>
+{% endblock %}

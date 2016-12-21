@@ -114,8 +114,7 @@ function getCookie(name) {
                 }
                 return cookieValue;
             }
-function commenter()
-{
+function commenter(){
 	var comm_nick = document.getElementById('comm_nick').value;
 	var comm_cont = document.getElementById('comm_cont').value;
 	var comm_arti = {{ article.id }};
@@ -125,10 +124,8 @@ function commenter()
 	commenter.appendChild(para);
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.open('POST', '{% url "myblog:ajax:commenter" %}', true);
-	xmlhttp.onreadystatechange=function()
-	{	
-		if(xmlhttp.readyState==4 && xmlhttp.status==200)
-		{
+	xmlhttp.onreadystatechange=function(){	
+		if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
 			//var comm_date=xmlhttp.responseText;
 			var comm_add = xmlhttp.responseText;
 			//para.innerHTML=comm_nick+': '+comm_cont+'--'+comm_date;

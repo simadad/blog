@@ -19,7 +19,4 @@ urlpatterns = [
     url(r'^blogger/editor/([0-9]+)', views.blogger_editor, name='blogger_editor'),
     url(r'^reprint/', views.reprint, name='reprint'),
     url(r'^ajax/', include(ajax_patterns, namespace='ajax')),
-    # url(r'^ajax/like', views.ajax_like, name='ajax_like'),
-    # url(r'ajax/commenter', views.ajax_commenter, name='ajax_commenter'),
-    # url(r'ajax/tcloud', views.ajax_tag_cloud, name='tcloud')
 ]

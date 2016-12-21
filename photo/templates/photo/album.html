@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block title %}album{% endblock %}
+{% block content %}
+<div class='content'>
+<h1>相册</h1>
+<span>
+	<span>上传图片</span>
+	<form method='POST' enctype="multipart/form-data" style='display:inline'>
+	{% csrf_token %}
+		<input type='file' name='photo' style='display:inline' multiple></input>
+		<input type='submit'></input>
+	</form>
+</span>
+<div id='album_box' style='text-align: center'>
+{% for photo in photos %}
+	<div style='margin: 0 auto'><img src='{{ photo.Orig_photo.url }}' /></div>
+{% endfor %}
+</div>
+</div>
+{% endblock %}
+{% block script %}
+<script type='text/javascript'>
+var page = 1;
+//var finished = true;
+//while(finished){
+//finished = false;
+var timeout = false;
+window.onscroll = function(){
+	if(timeout){clearTimeout(timeout);}
+	timeout = setTimeout(function(){
+		//var scroll_func = function(){
+		//console.log('window.innerHeight', window.innerHeight);
+		//console.log('window.scrollY', window.scrollY);
+		//console.log('document.body.offsetHeight', document.body.offsetHeight);
+		if(window.innerHeight+window.scrollY >= document.body.offsetHeight){
+			page = page + 1;
+			var album_box = document.getElementById('album_box');
+			var new_div = document.createElement('div');
+			album_box.appendChild(new_div);
+			//alert('new div')
+			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.open('GET', '{% url "photo:ajax:album_photos" %}?page='+page+'&album_id='+{{album.id}}, true);
+			console.log(window.innerHeight+window.scrollY+100, document.body.offsetHeight);
+			xmlhttp.onreadystatechange=function(){
+				if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+					var new_photos = xmlhttp.responseText;
+					console.log('new_photos'+new_photos);
+					if(new_photos){
+						new_div.innerHTML = new_photos;
+			//			finished = true;
+					}else{
+						//window.removeEventListener('scroll', scroll_func, false);
+						window.onscroll=undefined;
+						new_div.innerHTML = '***END***';
+						//finished = false;
+						//alert('new_photos: '+new_photos);
+					};
+				}else{
+					new_div.innerHTML = 'loading...';
+		//			finished = true;
+				};
+			};
+			xmlhttp.send();
+		};
+	},200);
+	//alert('finished '+finished);
+};
+//window.addEventListener('scroll', scroll_func, false);
+//};
+</script>
+{% endblock %}

@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% block title %}photo{% endblock %}
+{% block link %}
+	{% load static %}
+	<link rel='stylesheet' type='text/css' href='{% static "photo/index.css" %}' />
+{% endblock %}
+{% block content %}
+<div onclick='bigs_hidden()' id='bigs'></div>
+<div class='content'>
+<div>
+	<span>图库</span>
+</div>
+{% for album_key,album in albums.items %}
+<div class='album'>
+	<div class='album_name'><a href='{% url "photo:album" %}?id={{ album.album.id }}'>{{ album.album.Name }}</a></div>
+	<div class='album_photos' id='album{{ album.album.id }}'>
+		<!--button class='photosL' onclick='pages_add(this,{{album.album.id}},{{album.page}},"false")'><img src='{% static "photo/image/left.jpg" %}'/></button>
+		<span class='photos_center' id='album{{ album.id }}'>
+		{% for photo in album.photos %}
+			<a onclick='NewBigPh(this, {{ photo.id}})'><span class='photo' id='photo{{ photo.id }}'><img src='{{ photo.Thumbnail_photo.url }}' /></span></a>
+		{% endfor %}
+		</span>
+		<button class='photosR' onclick='pages_add(this,{{album.album.id}},{{album.page}},"true")'><img src='{% static "photo/image/right.jpg" %}'/></button-->
+	</div>
+</div>
+{% endfor %}
+</div>
+{% endblock %}
+{% block script %}
+<script type='text/javascript'>
+function pages_add(button, album_id, page, add){
+	//console.log('page', page);
+	//console.log('add', add);
+	if(page==1 && add=='false'){
+		button.disabled='disabled';
+	}else{
+		//console.log('album_id', album_id);
+		var album = document.getElementById('album'+album_id);
+		var xmlhttp = new XMLHttpRequest();
+		//console.log('page', page);
+		xmlhttp.open('GET', '{% url "photo:ajax:index_photos" %}?album_id='+album_id+'&page='+page+'&add='+add, true);
+		//console.log('GET', '{% url "photo:ajax:index_photos" %}?album_id='+album_id+'&page='+page+'&add='+add, true);
+		xmlhttp.onreadystatechange=function(){
+			if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+				var new_album = xmlhttp.responseText;
+				//console.log(new_album);
+				if(new_album){
+					album.innerHTML = new_album;
+				}else{
+					button.disabled='disabled';
+				};
+			};
+		};
+		xmlhttp.send();		
+	};
+};
+
+var body = document.getElementsByTagName('body')[0];
+//console.log(body);
+
+body.onload = function(){
+	{% for album_key,album in albums.items %}
+	pages_add(body, {{album.album.id}}, 0, 'true');
+	//console.log('album', {{album.album.id}});
+	{% endfor %}
+};
+
+var showing = 0;
+function bigs_hidden(){
+	document.getElementById('photo_show'+showing).hidden='hidden';
+	document.getElementById('bigs').hidden='hidden';
+	//this.hidden='hidden'; 
+};
+function ShowBigPh(photo_id){
+	console.log('show photo id',photo_id);
+	document.getElementById('bigs').hidden=undefined;
+	document.getElementById('photo_show'+photo_id).hidden=undefined;
+	showing = photo_id;
+};
+function NewBigPh(item, photo_id){
+	var bigs = document.getElementById('bigs');
+	//bigs.style.height = '100%';
+	bigs.style.width = '100%';
+	//console.log('window', window.screen.availWidth);
+	var new_div = document.createElement('div');
+	bigs.appendChild(new_div);
+	//console.log(bigs, new_div)
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.open('GET', '{% url "photo:ajax:index_big" %}?photo_id='+photo_id, true);
+	xmlhttp.onreadystatechange=function(){
+		if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+			var big_photo = xmlhttp.responseText;
+			document.getElementById('bigs').hidden=undefined;
+			new_div.innerHTML = big_photo;
+			showing = photo_id;
+			item.onclick = new Function('ShowBigPh('+photo_id+')');
+		};
+	};
+	xmlhttp.send();
+};
+
+</script>
+{% endblock %}
