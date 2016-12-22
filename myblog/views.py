@@ -6,7 +6,7 @@ from django import forms
 from PIL import Image
 from random import randrange
 from math import ceil
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse
 
 # Create your views here.
 tag_num = 10
@@ -19,6 +19,10 @@ def blogger_delete(delete_id):
     deleted_blogger.Followed.clear()
     deleted_blogger.Followers.clear()
     deleted_blogger.save()
+
+
+def homepage(request):
+    return render(request, 'homepage.html')
 
 
 def index(request):

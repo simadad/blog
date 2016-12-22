@@ -1,4 +1,4 @@
-from myblog import models
+from . import models
 import random
 
 

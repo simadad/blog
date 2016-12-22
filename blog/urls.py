@@ -17,9 +17,11 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from myblog import views
 
 urlpatterns = [
-    url(r'^blog/', include('myblog.urls', namespace='myblog')),
+    url(r'^$', views.homepage, name='homepage'),
+    url(r'^blog', include('myblog.urls', namespace='myblog')),
     url(r'^photo/', include('photo.urls', namespace='photo')),
     url(r'^accounts/', include('index.urls', namespace='index')),
     url(r'^recycle/', include('recycle.urls', namespace='recycle')),

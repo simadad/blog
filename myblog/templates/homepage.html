@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta property="wb:webmaster" content="39dd0cbb2d945be4" />
+	<link rel='stylesheet' type='text/css' href="{% static 'base.css' %}" />
+    <title>WebTest</title>
+</head>
+<body>
+<a href='{% url "myblog:index" %}'><section>blog</section></a>
+<a href='{% url "photo:index" %}'><section>gallery</section></a>
+</body>
+</html>

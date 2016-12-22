@@ -18,9 +18,9 @@
 			<a href='{% url "index:registration" %}'><button>注册</button></a>
 		</span>
 	{% endif %}
-	{% block header %}{% endblock %} 
+	{% block header %}{% endblock %}
 	<script>
-	function search_check(str)	
+	function search_check(str)
 	{
 	if (str.length>10)
 		{
@@ -53,5 +53,9 @@
 	<span><b><a>***感谢访问***</a></b></span>
 </footer>
 {% block script %}{% endblock %}
+<script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan id='cnzz_stat_icon_1261027759'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1261027759%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+</script>
 </body>
 </html>
