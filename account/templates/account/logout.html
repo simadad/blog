@@ -1,0 +1,3 @@
+<h1><a href='{% url "myblog:index" %}'>Welcome back {{ user.username }}!</a></h1>
+<a href='{% url "myblog:blogger" user.id %} '>{{ user.username }}</a>
+<button onclick='quit("{% url "account:logout" %}")'>退出</button>

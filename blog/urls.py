@@ -23,7 +23,7 @@ urlpatterns = [
     url(r'^$', views.homepage, name='homepage'),
     url(r'^blog', include('myblog.urls', namespace='myblog')),
     url(r'^photo/', include('photo.urls', namespace='photo')),
-    url(r'^accounts/', include('index.urls', namespace='index')),
+    url(r'^account/', include('account.urls', namespace='account')),
     url(r'^recycle/', include('recycle.urls', namespace='recycle')),
     url(r'^search/', include('search.urls', namespace='search')),
     url(r'^admin/', admin.site.urls)

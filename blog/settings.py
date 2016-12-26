@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'pd2m3-2ddb)s@!rrftd6!39ohy4ltjb(i_qf95%66zex$er9$7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['simadad0520.pythonanywhere.com']
 
@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'myblog.apps.MyblogConfig',
-    'index',
+    'account',
     'recycle',
     'search',
     'photo',

@@ -35,7 +35,7 @@ def index(request):
     return render(request, 'myblog/index.html', {
         'article_new': article_new,
         'article_like': article_like,
-        'tags': tags
+        'tags': tags,
     })
 
 
